@@ -3,28 +3,58 @@ var catNameElem = document.getElementById('cat-name');
 var catImageElem = document.getElementById('cat-img');
 var countElem = document.getElementById('cat-count');
 
-var cat = {
+var catListElem = document.getElementById('cat-list');
+
+var cats = [{
   clickCount : 0,
   name : 'Poplinre',
   imgSrc : 'images/cat.jpg'
-}
+},
+{
+  clickCount : 0,
+  name : 'Crazy Cat',
+  imgSrc : 'images/cat1.jpg'
+}];
+
+var currentCat = cats[0];
 
 function incrementCounter() {
-  cat.clickCount++;
-  view.render();
+  currentCat.clickCount++;
+  catView.render();
 }
 
-var view = {
+var catView = {
   render: function() {
-            countElem.textContent = cat.clickCount;
-            catNameElem.textContent = cat.name;
-            catImageElem.src = cat.imgSrc;
+            countElem.textContent = currentCat.clickCount;
+            catNameElem.textContent = currentCat.name;
+            catImageElem.src = currentCat.imgSrc;
           }
 }
+
+var catListView = {
+  render: function() {
+            catListElem.innerHTML = '';
+
+            for (var i = 0; i < cats.length; i++) {
+              var cat = cats[i];
+              var elem = document.createElement('li');
+              elem.textContent = cat.name;
+              elem.addEventListener('click', (function(cat) {
+                return function() {
+                  currentCat = cat;
+                  catView.render();
+                };
+              })(cat))
+              catListElem.appendChild(elem);
+            };
+          }
+}
+
 
 catElem.addEventListener('click', function(e){
   incrementCounter();
 });
 
 // initial render
-view.render();
+catListView.render();
+catView.render();
