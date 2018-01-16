@@ -1,18 +1,30 @@
-var clicker0 = document.getElementById('clicker0');
-var counter0 = document.getElementById('counter0');
-var clicker1 = document.getElementById('clicker1');
-var counter1 = document.getElementById('counter1');
-var count0 = counter0.textContent;
-var count1 = counter1.textContent;
+var catElem = document.getElementById('cat');
+var catNameElem = document.getElementById('cat-name');
+var catImageElem = document.getElementById('cat-img');
+var countElem = document.getElementById('cat-count');
 
-clicker0.onclick = function() {
-  count0++;
-  counter0.textContent = count0;
-  console.log('counter0' + counter0);
-};
+var cat = {
+  clickCount : 0,
+  name : 'Poplinre',
+  imgSrc : 'images/cat.jpg'
+}
 
-clicker1.onclick = function() {
-  count1++;
-  counter1.textContent = count1;
-  console.log('counter1' + counter1);
-};
+function incrementCounter() {
+  cat.clickCount++;
+  view.render();
+}
+
+var view = {
+  render: function() {
+            countElem.textContent = cat.clickCount;
+            catNameElem.textContent = cat.name;
+            catImageElem.src = cat.imgSrc;
+          }
+}
+
+catElem.addEventListener('click', function(e){
+  incrementCounter();
+});
+
+// initial render
+view.render();
