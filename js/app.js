@@ -14,6 +14,21 @@ var cats = [{
   clickCount : 0,
   name : 'Crazy Cat',
   imgSrc : 'images/cat1.jpg'
+},
+{
+  clickCount : 0,
+  name : 'Stalker',
+  imgSrc : 'images/cat2.jpg'
+},
+{
+  clickCount : 0,
+  name : 'Unsure',
+  imgSrc : 'images/cat3.jpg'
+},
+{
+  clickCount : 0,
+  name : 'Lazy',
+  imgSrc : 'images/cat4.jpg'
 }];
 
 var currentCat = cats[0];
