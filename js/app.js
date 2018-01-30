@@ -49,6 +49,28 @@ var octopus = {
     model.currentCat = cat;
   },
 
+  getCatLevel: function(count) {
+    x = count;
+    switch(true) {
+      case (x < 10):
+        level = 'Infant';
+        break;
+      case (x >= 10 && x < 15):
+        level = 'Toddler';
+        break;
+      case (x >= 15 && x < 20):
+        level = 'Teen';
+        break;
+      case (x >= 20 && x < 25):
+        level = 'Adult';
+        break;
+      default:
+        level = 'Dead';
+        break;
+    }
+    return level;
+  },
+
   incrementCounter: function() {
     model.currentCat.clickCount++;
     catView.render();
@@ -59,6 +81,7 @@ var catView = {
   init: function() {
     this.catElem = document.getElementById('cat');
     this.catNameElem = document.getElementById('cat-name');
+    this.catLevelElem = document.getElementById('cat-level');
     this.catImageElem = document.getElementById('cat-img');
     this.countElem = document.getElementById('cat-count');
 
@@ -72,6 +95,7 @@ var catView = {
   render: function() {
     var currentCat = octopus.getCurrentCat();
     this.countElem.textContent = currentCat.clickCount;
+    this.catLevelElem.textContent = octopus.getCatLevel(currentCat.clickCount);
     this.catNameElem.textContent = currentCat.name;
     this.catImageElem.src = currentCat.imgSrc;
   }
@@ -80,7 +104,6 @@ var catView = {
 var catListView = {
   init: function() {
     this.catListElem = document.getElementById('cat-list');
-
     this.render();
   },
 
